@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+{% load i18n static %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+    <style type="text/css">
+        #login {
+            background: #001833 url("{% static 'img/logo_kinomania_big.png' %}") no-repeat center -210px;
+            padding-top: 182px;
+        }
+    </style>
+    {% endblock %}
+    
+{% block header %}
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+    {% block body_id %}login{% endblock %}
+    {% block content %}
+<div class="main-message" style="background-color: red;text-align: center;margin-bottom: 10px;margin-top: -10px;">
+        <span style="color: white; margin: 60px 0 60px 0; padding-bottom: 10px;">В течении 10 минут доступ восстановится. </span><a href="/" style="text-decoration: none">Войти</a>
+    </div>
+            <h1 style="text-align: center;  color: white;">Проводятся технические работы</h1>
+    {% endblock %}

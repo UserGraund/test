@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body_id %}change_password{% endblock %}
+
+{% block content %}
+    <h2>Форма обратной связи</h2>
+    <div class="col-lg-6">
+        <form action="{% url 'create_feedback' %}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock %}

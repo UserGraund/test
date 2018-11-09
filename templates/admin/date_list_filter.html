@@ -1,0 +1,68 @@
+{% load i18n static %}
+<h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
+<div class="form-row field-date">
+    <input id="datePicker" type="text" class="vDateField" data-current-date="{% now 'd/m/Y' %}">
+</div>
+<style>
+    #datePicker {
+        width: 110px;
+    }
+
+    #changelist-filter .field-date a {
+        display: inline;
+        color: #999;
+    }
+
+    #calendarbox0 {
+        z-index: 9999;
+        margin-left: -213px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}">
+<script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+<script type="text/javascript">
+    function add_or_replace_url_param(key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var url = window.location.href;
+        var separator = url.indexOf('?') !== -1 ? "&" : "?";
+        if (url.match(re)) {
+            return url.replace(re, '$1' + key + "=" + value + '$2');
+        } else {
+            return url + separator + key + "=" + value;
+        }
+    }
+
+    function get_url_param_value(name) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results ? results[1] : ''
+    }
+
+    $(window).on('load', function () {
+        var $date_picker = $('#datePicker');
+        var date = get_url_param_value('date');
+        if (date) {
+            $date_picker.val(date.replace(/-/g, '/'));
+        } else {
+            $date_picker.val($date_picker.data('current-date'))
+        }
+
+        if (date) {
+            $date_picker.val(date.replace(/-/g, '/'));
+        }
+
+        function reload_page_with_new_date() {
+            var date_str = $date_picker.val().replace(/\//g, '-');
+            var new_url = add_or_replace_url_param('date', date_str);
+            $(location).attr('href', new_url);
+        }
+
+        $(document).on('click', '.datetimeshortcuts a:first-child', function () {
+            reload_page_with_new_date()
+        });
+
+        $('#calendarin0').on('click', 'a', function () {
+            reload_page_with_new_date();
+        })
+    });
+</script>

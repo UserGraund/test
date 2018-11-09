@@ -1,0 +1,478 @@
+[
+{
+  "model": "common.city",
+  "pk": 2,
+  "fields": {
+    "name": "Odesa"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 3,
+  "fields": {
+    "name": "Slaviansk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 4,
+  "fields": {
+    "name": "Kolomiya"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 5,
+  "fields": {
+    "name": "Mariupol"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 6,
+  "fields": {
+    "name": "Pavlograd"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 7,
+  "fields": {
+    "name": "Gorishni Plavni"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 8,
+  "fields": {
+    "name": "Myrgorod"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 9,
+  "fields": {
+    "name": "Kharkiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 10,
+  "fields": {
+    "name": "Bila Tserkva"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 11,
+  "fields": {
+    "name": "Dniprodzerzhinsk / Kamiyanske"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 12,
+  "fields": {
+    "name": "Ivano-Frankivsk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 13,
+  "fields": {
+    "name": "Striy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 14,
+  "fields": {
+    "name": "Melitopol"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 15,
+  "fields": {
+    "name": "Berdyansk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 16,
+  "fields": {
+    "name": "Kamyanets Podilskiy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 17,
+  "fields": {
+    "name": "Uzhgorod"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 18,
+  "fields": {
+    "name": "Kirovograd / Kropivnitskiy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 19,
+  "fields": {
+    "name": "Pervomaysk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 20,
+  "fields": {
+    "name": "Drogobych"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 21,
+  "fields": {
+    "name": "Kramatorsk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 22,
+  "fields": {
+    "name": "Mukachevo"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 23,
+  "fields": {
+    "name": "Nikopol"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 24,
+  "fields": {
+    "name": "Khust"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 25,
+  "fields": {
+    "name": "Izmail"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 26,
+  "fields": {
+    "name": "Kostopil"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 27,
+  "fields": {
+    "name": "Nova Kakhovka"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 28,
+  "fields": {
+    "name": "Sumy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 29,
+  "fields": {
+    "name": "Polonne"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 30,
+  "fields": {
+    "name": "Kryviy Rig"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 31,
+  "fields": {
+    "name": "Pryluki"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 32,
+  "fields": {
+    "name": "Vasylkiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 33,
+  "fields": {
+    "name": "Mukolaiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 34,
+  "fields": {
+    "name": "Chernivtsy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 35,
+  "fields": {
+    "name": "Ternopil"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 36,
+  "fields": {
+    "name": "Uzhnyi"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 37,
+  "fields": {
+    "name": "Chernigiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 38,
+  "fields": {
+    "name": "Poltava"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 39,
+  "fields": {
+    "name": "Volodymyr-Volynskiy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 40,
+  "fields": {
+    "name": "Novovolynsk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 41,
+  "fields": {
+    "name": "Zaporizhzha"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 42,
+  "fields": {
+    "name": "Uzin"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 43,
+  "fields": {
+    "name": "Artemivsk / Bakhmut"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 44,
+  "fields": {
+    "name": "Brovari"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 45,
+  "fields": {
+    "name": "Kherson"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 46,
+  "fields": {
+    "name": "Zhitomir"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 47,
+  "fields": {
+    "name": "Truskavets"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 48,
+  "fields": {
+    "name": "Irpin"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 49,
+  "fields": {
+    "name": "Khmelnytskiy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 50,
+  "fields": {
+    "name": "Dolyna"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 51,
+  "fields": {
+    "name": "Bucha"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 52,
+  "fields": {
+    "name": "Kremenchuk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 53,
+  "fields": {
+    "name": "Kovel"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 54,
+  "fields": {
+    "name": "Severodonetsk "
+  }
+},
+{
+  "model": "common.city",
+  "pk": 55,
+  "fields": {
+    "name": "Netishyn"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 56,
+  "fields": {
+    "name": "Berdychiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 57,
+  "fields": {
+    "name": "Kyiv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 58,
+  "fields": {
+    "name": "Lutsk"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 59,
+  "fields": {
+    "name": "Lviv"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 60,
+  "fields": {
+    "name": "Cherkasy"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 61,
+  "fields": {
+    "name": "Khodosiivka"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 62,
+  "fields": {
+    "name": "Lubny"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 63,
+  "fields": {
+    "name": "Dnipro"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 64,
+  "fields": {
+    "name": "Belgorod-Dnestrovsky"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 65,
+  "fields": {
+    "name": "Rivne"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 66,
+  "fields": {
+    "name": "Chervonograd"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 67,
+  "fields": {
+    "name": "Ladyzhin"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 68,
+  "fields": {
+    "name": "Vinnyca"
+  }
+},
+{
+  "model": "common.city",
+  "pk": 69,
+  "fields": {
+    "name": "Boryspil"
+  }
+}
+]

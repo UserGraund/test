@@ -1,0 +1,13 @@
+{% extends "admin/login.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+
+    <style type="text/css">
+        body.login {
+            background: #001833 url("{% static 'img/logo_kinomania_big.png' %}") no-repeat center -210px;
+            padding-top: 82px;
+        }
+    </style>
+{% endblock %}

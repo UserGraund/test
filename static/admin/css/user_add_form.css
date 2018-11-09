@@ -1,0 +1,17 @@
+.select2-container,
+select{
+     min-width: 41em;
+}
+
+.aligned .form-row input{
+    min-width: 40em;
+}
+
+form .wide p.help {
+    padding-left: 50px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__clear {
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,97 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Розрахунковий бланк</title>
+    <style type="text/css">
+        @font-face {
+            font-family: Arial;
+            src: url("{{ full_static_path }}fonts/arial.ttf");
+        }
+        @font-face {
+            font-family: Arial;
+            src: url("{{ full_static_path }}fonts/arialbd.ttf");
+            font-weight: bold;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .center {
+           text-align: center;
+        }
+        *{
+            font-family: Arial, sans-serif;
+        }
+        @page {
+            size: A4;
+            margin: 1cm;
+            @frame footer {
+                -pdf-frame-content: footerContent;
+                bottom: 0cm;
+                margin-left: 9cm;
+                margin-right: 9cm;
+                height: 1cm;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2 class="center"> РОЗРАХУНКОВИЙ БЛАНК </h2>
+    <span class="bold">Назва фільму:</span> "{{ first_session.film.name }}" <br>
+    <span class="bold">Кінотеатр:</span> "{{ first_session.cinema_hall.cinema.name }}" <br>
+    <span class="bold">Місто:</span> {{ first_session.cinema_hall.cinema.city.name }} <br>
+
+    {% if first_session.additional_agreement %}
+        <span class="bold">Генеральний договір:</span> {{ first_session.additional_agreement.contract.number }} <br>
+
+        <span class="bold">Додаток дійсний:</span> з
+        {{ first_session.additional_agreement.active_date_range.lower }} по
+        {{ first_session.additional_agreement.active_date_range.upper }} <br>
+
+        <span class="bold">Дистриб'ютор:</span> ТОВ "Кіноманія" <br>
+    {% endif %}
+
+</div>
+<br><br>
+<div>
+    <table border="1" cellspacing="2" cellpadding="3">
+        <thead>
+        <tr>
+            <td class="bold">Дата</td>
+            <td class="bold">Кількість сеансів</td>
+            <td class="bold">Глядачі</td>
+            <td class="bold">Валовий збір</td>
+            <td class="bold">ВАЛОВИЙ ЗБІР без ПДВ</td>
+            <td class="bold">РОЯЛТІ</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for date in dates_list %}
+            <tr>
+                <td>{{ date.date }}</td>
+                <td>{{ date.session_count }}</td>
+                <td>{{ date.sum_viewers_count }}</td>
+                <td>{{ date.sum_gross_yield|intcomma }}</td>
+                <td>{{ date.sum_gross_yield_without_vat|intcomma }}</td>
+                <td>{{ date.income|floatformat:2|intcomma }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td class="bold">Всього:</td>
+            <td class="bold">{{ summary_data.total_session_count }}</td>
+            <td class="bold">{{ summary_data.total_sum_viewers_count }}</td>
+            <td class="bold">{{ summary_data.total_sum_gross_yield|intcomma }}</td>
+            <td class="bold">{{ summary_data.total_sum_gross_yield_without_vat|intcomma }}</td>
+            <td class="bold">{{ summary_data.total_income|floatformat:2|intcomma }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

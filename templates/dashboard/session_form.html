@@ -1,0 +1,124 @@
+<form action="{{ form.form_action }}" class="form-inline" method="POST">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-block alert-danger">
+            {% if form_error_title %}
+                <h4 class="alert-heading">{{ form_error_title }}</h4>{% endif %}
+            <ul>
+                {{ form.non_field_errors|unordered_list }}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="alert alert-block alert-danger">
+                <ul>
+                    {% for error in field.errors %}
+                        <li>
+                            {{ field.label }}: {{ error|escape }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="table-container">
+        <table class="paleblue">
+            <thead>
+                <tr>
+                    {% if request.resolver_match.url_name == 'send_update_session_request' %}
+                        <th class="date">Дата</th>
+                    {% endif %}
+                    <th class="cinema_hall">Зал</th>
+                    <th class="film">Фильм</th>
+                    <th class="dimension">Формат</th>
+                    <th class="time">Время Начала</th>
+                    <th class="invitations_count">Пригл.</th>
+                    <th class="viewers_count">Зрители</th>
+                    <th class="gross_yield">Доход</th>
+                    <th class="min_price">Мин Цена</th>
+                    <th class="max_price">Макс Цена</th>
+                    <th class="is_original_language">Ориг. язык</th>
+                    {% if request.resolver_match.url_name != 'send_update_session_request' %}
+                        <th class="buttons_column"></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% if request.resolver_match.url_name == 'send_update_session_request' %}
+                        <td class="{% if form.date.errors %}invalid{% endif %} date">
+                            {{ form.date }}
+                        </td>
+                    {% endif %}
+                    <td class="{% if form.cinema_hall.errors %}invalid{% endif %} cinema_hall">
+                        {{ form.cinema_hall }}
+                    </td>
+                    <td class="{% if form.film.errors %}invalid{% endif %} film">
+                        <select class="form-control" id="id_film" name="film" required >
+                            <option value="">---------</option>
+                            {% for film in form.film.field.queryset.all %}
+                                <option {% if film.id|stringformat:"i" == form.film.value or film.id == form.film.value %}selected {% endif %}
+                                        value="{{ film.id }}"
+                                        data-film-dimensions="{% for d in film.dimensions_ids %}{{ d.id }},{% endfor %}">
+                                    {{ film.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class="{% if form.dimension.errors %}invalid{% endif %} dimension">
+                        {{ form.dimension }}
+                    </td>
+                    <td class="{% if form.time.errors %}invalid{% endif %} time">
+                        <div class="col-md-5">
+                            {{ form.time_hours }}
+                        </div>
+                        <div class="col-md-5">
+                            {{ form.time_minutes }}
+                        </div>
+                    </td>
+                    <td class="{% if form.invitations_count.errors %}invalid{% endif %} invitations_count">
+                        {{ form.invitations_count }}
+                    </td>
+                    <td class="{% if form.viewers_count.errors %}invalid{% endif %} viewers_count">
+                        {{ form.viewers_count }}
+                    </td>
+                    <td class="{% if form.gross_yield.errors %}invalid{% endif %} gross_yield">
+                        {{ form.gross_yield }}
+                    </td>
+                    <td class="{% if form.min_price.errors %}invalid{% endif %} min_price">
+                        {{ form.min_price }}
+                    </td>
+                    <td class="{% if form.max_price.errors %}invalid{% endif %} max_price">
+                        {{ form.max_price }}
+                    </td>
+                    <td class="{% if form.is_original_language.errors %}invalid{% endif %} is_original_language">
+                        {{ form.is_original_language }}
+                    </td>
+                    {% if not request.resolver_match.url_name == 'send_update_session_request' %}
+                        <td class="buttons_column">
+                            <button class="btn btn-primary btn-primary">{{ form.submit_text }}</button>
+                            <br><br>
+
+                            <a class="btn btn-danger" href="{{ form.create_session_url }}" >
+                                Отмена
+                            </a>
+                        </td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if request.resolver_match.url_name == 'send_update_session_request' %}
+        {{ form.update_request_comment.errors }}
+        {{ form.update_request_comment.label }}
+        {{ form.update_request_comment }}
+        <br><br>
+        <button class="btn btn-primary btn-primary">{{ form.submit_text }}</button>
+        <a class="btn btn-danger" href="{{ form.create_session_url }}" > Отмена </a>
+    {% endif %}
+</form>
+

@@ -1,0 +1,16 @@
+<section>
+    Пользователь <b>{{ username }}</b> запросил обновление сеанса в кинотеатре <b>"{{ cinema_name }}"</b>, город {{ city_name }}.
+    <br>
+    <h4> Запрошенные изменения:</h4>
+    {% for update in requested_updates %}
+        {{ update.field_name }}: "{{ update.old_value }}" заменить на "{{ update.new_value }}" <br>
+    {% endfor %}
+    <br>
+    {% if comment %}
+        Комментарий: "{{ comment }}"
+    {% endif %}
+    <br>
+    <br>
+    Вы можете изменить сеанс перейдя по ссылке:
+    <a href="{{ session_admin_url }}">сеанс</a>
+</section>

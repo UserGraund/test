@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block extrahead %}
+    <script defer src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+{% endblock %}
+
+{% block body_id %}cinema-list{% endblock %}
+
+{% block content %}
+    <div class="date_picker_wrapper">
+        <h4>Выберите дату</h4>
+        <div id="date_picker"
+               value="{{ view.date|date:"d/m/Y" }}">
+        </div>
+        <br><br>
+
+    </div>
+    <div class="table_wrapper">
+        <h2>Отчёты по кинотеатрам за {{ view.date|date:"d/m/Y" }}</h2>
+        {% render_table table %}
+    </div>
+
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.theme.min.css' %}"/>
+    <script>
+
+        var unfinished_reports_dates = [{% for d in unfinished_reports_dates %} new Date({{ d.year }}, {{ d.month }} - 1, {{ d.day }}), {% endfor %}];
+        var finished_reports_dates = [{% for d in finished_reports_dates %} new Date({{ d.year }}, {{ d.month }} - 1, {{ d.day }}), {% endfor %}];
+        var no_agreements_dates = [{% for d in no_agreements_dates %} new Date({{ d.year }}, {{ d.month }} - 1, {{ d.day }}), {% endfor %}];
+
+        var today_date = new Date();
+        today_date.setHours(0,0,0,0);
+        $(window).on('load', function() {
+            $( "#date_picker" ).datepicker({
+                dateFormat: "dd/mm/yy",
+                minDate: -{{ view.max_days_ago }},
+                maxDate: 0,  // disable future
+                beforeShowDay: function(date) {
+                    if (unfinished_reports_dates.some(function(d){return d.getTime() === date.getTime()})) {
+                        return [true, 'red', '']
+                    } else if (finished_reports_dates.some(function(d){return d.getTime() === date.getTime()})) {
+                         return [true, 'green', '']
+                    } else if (no_agreements_dates.some(function(d){return d.getTime() === date.getTime()})) {
+                        return [false]
+                    }
+                    return [true, '', ''];
+                }
+            }).datepicker('show');
+        });
+
+        $(document).on('change', '#date_picker', function () {
+            var date_str = $(this).val().replace(/\//g, '-');
+            $(location).attr('href', '/main-cinema-list/' + date_str + '/');
+        })
+    </script>
+{% endblock %}

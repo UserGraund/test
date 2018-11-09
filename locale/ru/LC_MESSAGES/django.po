@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-18 15:13+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: templates/admin/common/xlsreportsupload/change_form.html:20
+#: templates/admin/import_users_view.html:10
+#: templates/admin/upload_xls_reports.html:9
+#: templates/smuggler/load_data_form.html:27
+msgid "Home"
+msgstr "Главная"
+
+#: templates/admin/common/xlsreportsupload/change_form.html:26
+#, python-format
+msgid ""
+"Add %(name)s\n"
+"    "
+msgstr ""
+"Добавить %(name)s\n"
+"    "
+
+#: templates/admin/date_list_filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/admin/import_users_view.html:21
+#: templates/admin/upload_xls_reports.html:20
+#: templates/smuggler/load_data_form.html:45
+msgid "Please correct the error below."
+msgstr "Пожалуйста исправьте ошибки ниже."
+
+#: templates/admin/import_users_view.html:22
+#: templates/admin/upload_xls_reports.html:20
+#: templates/smuggler/load_data_form.html:47
+msgid "Please correct the errors below."
+msgstr "Пожалуйста исправьте ошибки ниже."
+
+#: templates/admin/index.html:13
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr "Модели в приложении %(name)s"
+
+#: templates/admin/index.html:26
+msgid "Add"
+msgstr "Добавить"
+
+#: templates/admin/index.html:33
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/admin/index.html:43
+msgid "You don't have permission to edit anything."
+msgstr "У вас недосточно прав для редактирования"
+
+#: templates/smuggler/change_list.html:7
+msgid "Загрузка бекапа"
+msgstr ""
+
+#: templates/smuggler/change_list.html:12
+msgid "Загрузить"
+msgstr ""
+
+#: templates/smuggler/load_data_form.html:7
+#: templates/smuggler/load_data_form.html:28
+msgid "Загрузить бекап"
+msgstr ""
+
+#: templates/smuggler/load_data_form.html:36
+msgid "Load data"
+msgstr "Загрузить данные"
+
+#: templates/smuggler/load_data_form.html:39
+msgid ""
+"Existing items with same <strong>primary key</strong> will be overwritten."
+msgstr "Существующие элементы с таким же <strong>id</strong> будут перезаписаны"
+
+#: templates/smuggler/load_data_form.html:56
+msgid "Load"
+msgstr "Загрузить"
+
+#: users/admin.py:72
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: users/admin.py:73
+msgid "Permissions"
+msgstr "Права"
+
+#: users/admin.py:74
+msgid "Important dates"
+msgstr "Импортировать даты"
+
+#: users/admin_forms.py:42
+msgid "No password set."
+msgstr "Пароль не установлен."
+
+#: users/admin_forms.py:57
+msgid "The two password fields didn't match."
+msgstr "Пароли не совпадают."
+
+#: users/admin_forms.py:81
+msgid "Password"
+msgstr "Пароль"
+
+#: users/admin_forms.py:86
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+#: users/admin_forms.py:89
+msgid "Enter the same password as before, for verification."
+msgstr "Введите такой же пароль перед верификацией."
+
+#: users/models.py:89
+msgid "username"
+msgstr "имя пользователя"
+
+#: users/models.py:96
+msgid "Designates whether the user can log into this admin site."
+msgstr "Указывает, может ли пользователь войти в этот сайт администратора."
+
+#: users/models.py:99
+msgid "active"
+msgstr "активный"
+
+#: users/models.py:102
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+"Указывает, должен ли этот пользователь считаться активным. Отмените выбор этого параметра "
+"вместо удаления учетных записей."
+
+#: users/models.py:106
+msgid "date joined"
+msgstr "дата создания"

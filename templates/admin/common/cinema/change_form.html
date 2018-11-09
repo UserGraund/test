@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+
+
+{% block field_sets %}
+    {% for fieldset in adminform %}
+        {% if forloop.first %}
+            <div id="first_field_set">
+        {% endif %}
+
+        {% include "admin/includes/fieldset.html" %}
+
+        {% if forloop.first %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

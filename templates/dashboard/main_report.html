@@ -1,0 +1,102 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <script defer src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+    <script defer src="{% static 'js/base_report.js' %}"></script>
+    <script defer src="{% static 'js/main_report.js' %}"></script>
+{% endblock %}
+
+{% block body_id %}report_table{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-3" id="filter-form-wrapper">
+        {% if export_form %}
+            <h4>Действия</h4>
+            <button class="btn btn-success" data-toggle="modal" data-target="#report-modal">
+                Экспортировать
+            </button>
+            <br>
+            <br>
+        {% endif %}
+
+        <h4>Фильтры</h4>
+        <button id="float-submit" class="btn btn-primary filter-data">Применить</button>
+        <button class="btn btn-primary filter-data">Применить</button>
+        <a href="{% url 'main_report' %}" class="btn btn-info">Сбросить все</a>
+        <br>
+        <br>
+
+        <div class="panel-group">
+            <form action="{% url 'main_report' %}" id="filter-form">
+                {% for field in filter_form %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion"
+                             href="#{{ field.name }}">
+                            <h4 class="panel-title">
+                                {{ field.label }}
+                            </h4>
+                        </div>
+                        <div id="{{ field.name }}"
+                             class="panel-collapse collapse {% if field.value %}in{% endif %}">
+                            <div class="panel-body">
+                                {% if field.field.widget.attrs.filterable %}
+                                    <input type="text" placeholder="начните вводить название"
+                                           class="form-control filter-options">
+                                {% endif %}
+                                {{ field }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <h2>Отчёт</h2>
+        <div id="report-table">
+            {% include 'dashboard/main_report_table.html' %}
+        </div>
+    </div>
+
+    {% if export_form %}
+        <div id="report-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Экспорт данных</h4>
+                    </div>
+                    <form action="{% url 'main_report' %}" id="export-form">
+                        <div class="modal-body">
+                            {{ export_form.export_format.label }}
+                            {{ export_form.export_format }}
+                            {{ export_form.export_group_by.label }}
+                            {{ export_form.export_group_by }}
+                            <div id="grouped_columns_wrapper">
+                                {{ export_form.grouped_columns.label }}
+                                {{ export_form.grouped_columns }}
+                            </div>
+                            <div id="flat_columns_wrapper">
+                                {{ export_form.flat_columns.label }}
+                                {{ export_form.flat_columns }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary export-data-btn">экспортировать</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div id="loader"></div>
+
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.theme.min.css' %}"/>
+{% endblock %}

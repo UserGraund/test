@@ -1,0 +1,111 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <script defer src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+    <script defer src="{% static 'js/base_report.js' %}"></script>
+    <script defer src="{% static 'js/confirm_monthly_report.js' %}"></script>
+{% endblock %}
+
+{% block body_id %}report_table{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-3" id="filter-form-wrapper">
+
+        <h4>Фильтры</h4>
+        <button class="btn btn-primary filter-data" type="submit" form="filter-form">Применить</button>
+        <br>
+        <br>
+
+        <div class="panel-group">
+            <form action="{% url 'confirm_monthly_report' %}" id="filter-form" novalidate>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#year_month" >
+                        <h4 class="panel-title"> Год и месяц</h4>
+                    </div>
+
+                    <div id="year_month" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                                {{ filter_form.year }}
+                                {{ filter_form.month }}
+                        </div>
+                    </div>
+                </div>
+
+                {% for field in filter_form %}
+                    {% if field.name != 'year' and field.name != 'month' %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion"
+                                 href="#{{ field.name }}">
+                                <h4 class="panel-title">
+                                    {{ field.label }}
+                                </h4>
+                            </div>
+                            <div id="{{ field.name }}"
+                                 class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    {% if field.field.widget.attrs.filterable %}
+                                        <input type="text" placeholder="начните вводить название"
+                                               class="form-control filter-options">
+                                    {% endif %}
+                                    {{ field }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="col-md-9">
+        {% if filter_form.values.film %}
+            <h4>
+                Отчёт
+                за {{ filter_form.values.month }} {{ filter_form.year.value }}
+                по фильму "{{ filter_form.values.film }}", формат "{{ filter_form.values.dimension }}" в кинотеатре "{{ filter_form.values.cinema }}"
+            </h4>
+        {% endif %}
+        <div id="report-table">
+            {% include 'dashboard/main_report_table.html' %}
+        </div>
+
+        {% if report_data %}
+            {% if was_report_confirmed %}
+                <div class="alert alert-info fade in alert-dismissable">
+                    Вы подтвердили расчетный бланк.
+                </div>
+            {% else %}
+                <form action="{% url 'create_monthly_report' %}" method="post" id="create-monthly-report-form" >
+                    {% csrf_token %}
+                    <div style="display: none">
+                        {{ filter_form.as_table }}
+                    </div>
+                    <button class="btn btn-primary filter-data" type="submit">Подтвердить расчетный бланк</button>
+                </form>
+                <br>
+            {% endif %}
+            <form action="{% url 'confirm_monthly_report' %}">
+                {% csrf_token %}
+                <input type="text" name="export_format" value="xls" hidden>
+                <button class="btn btn-success filter-data export-data-btn" type="button">Экспорт в EXCEL</button>
+            </form>
+            <br>
+            <form action="{% url 'confirm_monthly_report' %}">
+                {% csrf_token %}
+                <input type="text" name="export_format" value="pdf" hidden>
+                <button class="btn btn-success filter-data export-data-btn" type="button">Экспорт в PDF</button>
+            </form>
+
+        {% endif %}
+
+    </div>
+
+    <div id="loader"></div>
+
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>
+{% endblock %}

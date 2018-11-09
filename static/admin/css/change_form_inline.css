@@ -1,0 +1,37 @@
+#first_field_set .form-row {
+    width: 36.5%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#first_field_set .form-row:first-child{
+    width: 17%;
+}
+
+#first_field_set .form-row:last-child{
+    width: 8%;
+}
+
+#first_field_set label {
+    width: 99%;
+    text-align: center;
+}
+
+#first_field_set .vIntegerField,
+#first_field_set .vTextField{
+    width: 92%;
+}
+
+#first_field_set .select2-container{
+    width: 80%;
+}
+
+#first_field_set .related-widget-wrapper{
+    float: none;
+    overflow: initial;
+}
+
+#first_field_set .field-city,
+#first_field_set .field-chain{
+    text-align: center;
+}

@@ -1,0 +1,45 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    {{ media }}
+{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}
+    {{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }}
+    change-form
+{% endblock %}
+
+{% block title %}Cистема бекапу{% endblock %}
+
+{% block content_title %}
+{% endblock %}
+
+{% block content %}
+    <ul style="list-style-type: none">
+        <li style="list-style-type: none;">
+            <a href="{% url 'unplaned_backup' %}" class="addlink">
+                Начать внеплановый бекап
+            </a>
+        </li>
+        <li style="list-style-type: none;">
+            <a href="http://{{ request.get_host }}/admin/backup-system/backup-load" class="addlink">
+                Возобновить с бекапа
+            </a>
+        </li>
+        <li style="list-style-type: none;">
+            <a href="http://{{ request.get_host }}/admin/backup-system/backup-time/" class="addlink">
+                Установить время бекапа
+            </a>
+        </li>
+        <li style="list-style-type: none;">
+            <a href="http://{{ request.get_host }}/admin/backup-system/backup-file/" class="addlink">
+                Файлы бекапов
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "dashboard/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block extrahead %}
+    <script defer src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+    <script defer src="{% static 'js/create_or_update_session.js' %}"></script>
+{% endblock %}
+
+{% block body_id %}create-or-update-session{% endblock %}
+
+{% block content %}
+
+    <h2>
+        {% if is_daily_report_finished %}
+            {{ view.session_table_title }} за {{ view.date|date:"d/m/Y" }}
+        {% else %}
+            {{ view.session_table_title }} за
+            <form action="{% url 'change_sessions_date' pk=view.cinema.id date=view.date_str %}"
+                  method="POST"
+                  id="change_sessions_date_form">
+                {% csrf_token %}
+                {{ change_session_form.change_date_to }}
+                {% if user_is_allowed %}
+                    <button class="btn btn-primary">Изменить дату</button>
+                {% endif %}
+            </form>
+        {% endif %}
+    </h2>
+
+    {% if 'order-by-time' in view.request.GET %}
+        <a class="btn btn-sm btn-default" href=".">
+            <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+            Сортировать по доп. соглашениям
+        </a>
+    {% else %}
+         <a class="btn btn-sm btn-default" href=".?order-by-time">
+            <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+            Сортировать по времени сеанса
+        </a>
+    {% endif %}
+    <br>
+    <br>
+
+    <div id="session_list_table_wrapper">
+        {% render_table table %}
+    </div>
+    <br>
+        {% if user_is_allowed %}
+            <form method="POST" id="set_daily_report_unfinished_form" style="display: none"
+                  action={% url 'set_daily_report_unfinished' pk=cinema.pk date=view.date_str %}>
+                {% csrf_token %}
+                <div  class="alert alert-info" >
+                    <button type="submit" class="btn btn-info">
+                        Добавить сеанс
+                    </button>
+                    &nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    Несмотря на то что Вы уже отметили отчёт как завершенный, но вы можете добавить сеансы.
+                    После добавления сеансов вы должны будете завершить отчёт повторно.
+                 </div>
+             </form>
+
+            {% if not is_daily_report_finished or request.resolver_match.url_name == 'send_update_session_request' or request.user.is_superuser %}
+                <h2>Данные по сеансу</h2>
+                <div id="create_of_update_form_wrapper">
+                    {% include 'dashboard/session_form.html' %}
+                </div>
+
+                {% if request.resolver_match.url_name != 'send_update_session_request'  %}
+                    {% if last_form %}
+                        <div id="last_form_wrapper">
+                            {% include 'dashboard/session_form.html' with form=last_form %}
+                        </div>
+                    {% endif %}
+
+                    <br> <br>
+
+                    {% if last_form %}
+                        <div class="alert alert-info" role="alert">
+                            <button class="btn btn-info" id="copy_last_session">
+                                Скопировать последний сеанс
+                            </button>
+                            &nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Вы можете использовать последний введённый вами сеанс для предзаполнения формы
+                        </div>
+                    {% endif %}
+
+                    {% if copy_yesterday_sessions_form %}
+                        <form method="POST" action={% url 'copy_yesterday_sessions' pk=cinema.pk date=view.date_str %}>
+                            {% csrf_token %}
+                             <div class="alert alert-info" role="alert">
+                                <button type="submit" class="btn btn-primary">
+                                    Скопировать отчёт за прошлый день
+                                </button>
+                                &nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                Вы сможете отредактировать информацию по сеансам перед сдачей отчёта
+                             </div>
+                        </form>
+                    {% endif %}
+
+                    <form method="POST" action={% url 'set_daily_report_finished' pk=cinema.pk date=view.date_str %}>
+                        {% csrf_token %}
+                        <div class="alert alert-warning" role="alert">
+                            <button type="submit" class="btn btn-warning">
+                                Завершить отчёт за {{ view.date|date:"d/m/Y"  }}
+                            </button>
+                            &nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            После завершения отчёта его нельзя будет изменить без разрешения администратора
+                        </div>
+                    </form>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+
+    <script>
+        {% if is_daily_report_finished %}
+            if ($('#create_of_update_form_wrapper').length === 0) {
+                $('#set_daily_report_unfinished_form').show();
+            }
+        {% endif %}
+    </script>
+
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.theme.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'jquery-ui-1.12.1/jquery-ui.theme.min.css' %}"/>
+
+{% endblock %}

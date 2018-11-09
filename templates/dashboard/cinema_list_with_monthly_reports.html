@@ -1,0 +1,43 @@
+{% extends "dashboard/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block extrahead %}
+    <script defer src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+{% endblock %}
+
+{% block body_id %}cinema-list{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        <form action="{% url 'cinema_list_with_monthly_reports' %}" id="filter-form">
+
+            <br>
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"> Год и месяц</h4>
+                </div>
+                <div class="panel-body">
+                    {{ filter_form.year }}
+                    <br>
+                    {{ filter_form.month }}
+                    <br>
+                    <button class="btn btn-primary filter-cinemas" type="submit">Применить</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-9">
+        <h2>Контроль расчётных бланков за {{ filter_form.values.month }} {{ filter_form.year.value }}</h2>
+        {% render_table table %}
+    </div>
+
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>
+    <script>
+    </script>
+{% endblock %}
+
+
+

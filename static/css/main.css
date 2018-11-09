@@ -1,0 +1,212 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.main-container{
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1370px;
+}
+
+.btn-extra-sm{
+    padding: 3px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+table.paleblue td,
+table.paleblue thead th{
+    font-size: 13px;
+}
+
+/* session table columns width */
+#create-or-update-session .date                          { width: 6%; }
+#create-or-update-session .cinema_hall                   { width: 13%; }
+#create-or-update-session .film                          { width: 22%; }
+#create-or-update-session .dimension                     { width: 7%; }
+#create-or-update-session .time                          { width: 10%; }
+#create-or-update-session .invitations_count             { width: 5%; }
+#create-or-update-session .viewers_count                 { width: 5%; }
+#create-or-update-session .gross_yield                   { width: 7%; }
+#create-or-update-session .min_price                     { width: 6%; }
+#create-or-update-session .max_price                     { width: 6%; }
+#create-or-update-session .update_link                   { width: 3%; }
+#create-or-update-session .is_original_language          { width: 2%; }
+#create-or-update-session .remove_form                   { width: 3%; }
+#create-or-update-session .send_update_request_link      { width: 3%; }
+
+#create-or-update-session .subtotal td{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+#create-or-update-session .buttons_column{
+    width: 13%;
+    text-align: center;
+}
+
+#create-or-update-session .buttons_column a{
+    color: white;
+    font-weight: normal;
+}
+
+#create-or-update-session #change_sessions_date_form #id_change_date_to{
+    height: 33px;
+    position: relative;
+    top: -3px;
+    font-size: large;
+}
+
+#create-or-update-session #change_sessions_date_form{
+    display: inline;
+}
+
+#create-or-update-session .update_link,
+#create-or-update-session .remove_form,
+#create-or-update-session .send_update_request_link,
+#create-or-update-session .is_original_language{
+    text-align: center;
+}
+
+#create-or-update-session .form-control{
+    width: 100%;
+    padding: 0 0 0 3px;
+    font-size: 13px;
+}
+
+#create-or-update-session td.invalid *{
+    color: #d42a25;
+    font-weight: bold;
+}
+
+#create-or-update-session .time div{
+    padding: 0;
+    margin-left: 6px;
+}
+
+#create-or-update-session #last_form_wrapper {
+    display: none;
+}
+
+#create-or-update-session #id_dimension,
+#report_table #filter-form-wrapper ul{
+    padding: 5px;
+    list-style-type: none;
+}
+
+#report_table  .panel-heading {
+    cursor: pointer;
+}
+
+#report_table .panel-body {
+    padding: 5px 10px;
+}
+
+#report_table #filter-form-wrapper ul{
+    margin-bottom: 0;
+}
+
+#report_table .form-control {
+    margin: 10px 0;
+}
+
+#report_table #filter-form-wrapper{
+    padding: 0;
+}
+
+#report_table #filter-form-wrapper label{
+    font-weight: normal;
+}
+
+#report_table #float-submit {
+    position: fixed;
+    bottom: 10px;
+    opacity: 0.7;
+    display: none;
+    left: 310px;
+    z-index: 1;
+}
+
+#report_table #float-submit:hover{
+    opacity: 1;
+}
+
+#report_table .filter-options{
+    height: 25px;
+    margin: 5px 0;
+}
+
+#report_table .group_by{
+    width: 19%;
+}
+
+#report_table #grouped_columns_wrapper{
+    display: none;
+}
+
+#change_password .form-control{
+    margin-bottom: 10px;
+}
+
+#loader {
+    border: 4px solid #5bc0de;
+    border-top: 4px solid #101010;
+    border-bottom: 4px solid #101010;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    z-index: 9999;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#cinema-list .red a{
+    background: #ff6565
+}
+
+#cinema-list .send_daily_report_email{
+    text-align: center;
+}
+
+#cinema-list .green a{
+    background: #7cff7c;
+}
+
+#cinema-list .table_wrapper{
+    float: left;
+}
+
+#cinema-list .date_picker_wrapper{
+    width: 280px;
+    float: left;
+}
+
+#cinema-list .are_all_blanks_confirmed a.not_confirmed{
+    color: red;
+}
+
+#change_password{
+    width: 670px;
+    padding-left: 43px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.not_dotes {
+    list-style-type: none;
+}
+
+/*@media (min-width:992px){.container{width:970px}}*/
+/*@media (min-width:1200px){.container{width:1170px}}*/
+/*@media (min-width:1400px){.container{width:1370px}}*/

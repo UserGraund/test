@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/user_add_form.css' %}"/>
+    <script>
+        document.cookie = "chainid=; path=/";
+        $(document).on('change', '#id_chain_cinema_filter', function () {
+            document.cookie = "chainid=" + $(this).val() + "; path=/";
+        });
+    </script>
+{% endblock %}

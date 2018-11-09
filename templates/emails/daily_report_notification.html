@@ -1,0 +1,6 @@
+<section>
+    Пожалуйста, заполните дневные отчёты по кинотеатрам.
+    {% for date, url in missing_report_links.items %}
+        <a href="{{ url }}">{{ date }}</a>
+    {% endfor %}
+</section>
